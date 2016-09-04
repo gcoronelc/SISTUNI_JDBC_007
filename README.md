@@ -42,7 +42,7 @@
 
 # CLASE 01 
 
-- Fecha: 21-AGOSTO-2016
+- Fecha: 09-SETIEMBRE-2016
 - Revisado Git y GitHub
 - Instalar Oracle
 - Crear esquema Eureka
