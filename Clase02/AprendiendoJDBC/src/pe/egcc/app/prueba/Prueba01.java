@@ -14,8 +14,8 @@ public class Prueba01 {
   
   public static void main(String[] args) {
     // Parametros
-    String driver = "com.mysql.jdbc.Driver";
-    String urlDB = "jdbc:mysql://172.17.1.130:3306/eurekabank";
+    String driver = "oracle.jdbc.OracleDriver";
+    String urlDB = "jdbc:oracle:thin:@localhost:1521:XE";
     String user = "eureka";
     String pass = "admin";
     try {

@@ -1,4 +1,4 @@
-package pe.egcc.app.db;
+package pe.egcc.eurekaapp.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -23,13 +23,14 @@ public final class AccesoDB {
     String user = "eureka";
     String pass = "admin";
     try {
+      // Conexión con la BD
       Class.forName(driver).newInstance();
       cn = DriverManager.getConnection(urlDB, user, pass);
     } catch (SQLException e) {
       throw e;
-    } catch(ClassNotFoundException e){
+    } catch (ClassNotFoundException e) {
       throw new SQLException("No se encontro el driver de la BD.");
-    } catch(Exception e){
+    } catch (Exception e) {
       throw new SQLException("No se puede establecer "
               + "conexión de la BD.");
     }

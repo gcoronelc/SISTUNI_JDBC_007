@@ -16,7 +16,7 @@ public class Prueba02 {
     try {
       cn = AccesoDB.getConnection();
       System.out.println("Ejecutando proceso.");
-      //Thread.currentThread().sleep(10000);
+      Thread.currentThread().sleep(10000);
       System.out.println("Fin de proceso");
     } catch (Exception e) {
       e.printStackTrace();
