@@ -1,0 +1,23 @@
+PROGRAMAR RETIRO
+=================
+
+
+Datos
+--------------
+- Cuenta: Se debe ingresar.
+- Importe: Se debe ingresar.
+- Clave: Se debe ingresar.
+- Empleado: Se tiene en sesión.
+
+
+Proceso General
+------------------------------
+- Un UPDATE en la tabla CUENTA.
+- Un INSERT en la tabla MOVIMIENTO.
+
+
+
+
+
+
+
