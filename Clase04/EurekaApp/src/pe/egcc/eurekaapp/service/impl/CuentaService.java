@@ -1,12 +1,14 @@
-package pe.egcc.eurekaapp.service;
+package pe.egcc.eurekaapp.service.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import pe.egcc.eurekaapp.db.AccesoDB;
+import pe.egcc.eurekaapp.service.espec.CuentaServiceEspec;
 
-public class CuentaService {
+public class CuentaService implements CuentaServiceEspec{
 
+  @Override
   public void procRetiro(String cuenta,
           double importe, String clave,
           String codEmp) {

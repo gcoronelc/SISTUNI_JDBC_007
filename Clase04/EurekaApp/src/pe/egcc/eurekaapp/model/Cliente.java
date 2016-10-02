@@ -19,6 +19,7 @@ public class Cliente {
   private String email;
 
   public Cliente() {
+    codigo = "NONE";
   }
 
   public String getCodigo() {

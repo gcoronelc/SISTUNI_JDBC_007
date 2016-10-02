@@ -2,7 +2,7 @@ package pe.egcc.eurekaapp.prueba;
 
 import java.util.List;
 import pe.egcc.eurekaapp.model.Cliente;
-import pe.egcc.eurekaapp.service.ClienteService;
+import pe.egcc.eurekaapp.service.impl.ClienteServiceImpl;
 
 /**
  *
@@ -22,8 +22,8 @@ public class Prueba04 {
       bean.setMaterno("");
       bean.setNombre("");
       // Proceso
-      ClienteService service = new ClienteService();
-      List<Cliente> lista = service.traerClientes(bean);
+      ClienteServiceImpl service = new ClienteServiceImpl();
+      List<Cliente> lista = service.traerVarios(bean);
       // Reporte
       for (Cliente c : lista) {
         System.out.println(c.toString());

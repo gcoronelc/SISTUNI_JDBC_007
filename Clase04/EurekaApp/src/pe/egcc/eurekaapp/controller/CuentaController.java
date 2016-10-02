@@ -1,7 +1,7 @@
 package pe.egcc.eurekaapp.controller;
 
 import pe.egcc.eurekaapp.model.Empleado;
-import pe.egcc.eurekaapp.service.CuentaService;
+import pe.egcc.eurekaapp.service.impl.CuentaService;
 import pe.egcc.eurekaapp.util.Session;
 
 /**

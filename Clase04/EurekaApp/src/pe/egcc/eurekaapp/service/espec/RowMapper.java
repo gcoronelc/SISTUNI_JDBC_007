@@ -1,4 +1,4 @@
-package pe.egcc.eurekaapp.service;
+package pe.egcc.eurekaapp.service.espec;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -95,6 +95,11 @@ public class MainView extends javax.swing.JFrame {
     btnClientes.setFocusable(false);
     btnClientes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
     btnClientes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    btnClientes.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnClientesActionPerformed(evt);
+      }
+    });
     toolBar.add(btnClientes);
 
     btnSucursales.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pe/egcc/eurekaapp/img/sucursal.png"))); // NOI18N
@@ -170,6 +175,11 @@ public class MainView extends javax.swing.JFrame {
 
     menuTablaClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pe/egcc/eurekaapp/img/cliente.png"))); // NOI18N
     menuTablaClientes.setText("Clientes");
+    menuTablaClientes.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        menuTablaClientesActionPerformed(evt);
+      }
+    });
     menuTabla.add(menuTablaClientes);
 
     menuTablaSucursales.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pe/egcc/eurekaapp/img/sucursal.png"))); // NOI18N
@@ -229,6 +239,14 @@ public class MainView extends javax.swing.JFrame {
   private void menuProcesoRetiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuProcesoRetiroActionPerformed
     cargarFormInterno(ProcRetiroView.class);
   }//GEN-LAST:event_menuProcesoRetiroActionPerformed
+
+  private void menuTablaClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTablaClientesActionPerformed
+    cargarFormInterno(MantClientesView.class);
+  }//GEN-LAST:event_menuTablaClientesActionPerformed
+
+  private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
+    cargarFormInterno(MantClientesView.class);
+  }//GEN-LAST:event_btnClientesActionPerformed
 
   /**
    * @param args the command line arguments

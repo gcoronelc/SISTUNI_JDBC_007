@@ -1,6 +1,6 @@
 package pe.egcc.eurekaapp.prueba;
 
-import pe.egcc.eurekaapp.service.CuentaService;
+import pe.egcc.eurekaapp.service.impl.CuentaService;
 
 /**
  *

@@ -1,7 +1,8 @@
 package pe.egcc.eurekaapp.controller;
 
 import pe.egcc.eurekaapp.model.Empleado;
-import pe.egcc.eurekaapp.service.LogonService;
+import pe.egcc.eurekaapp.service.espec.EmpleadoServiceEspec;
+import pe.egcc.eurekaapp.service.impl.EmpleadoServiceImpl;
 import pe.egcc.eurekaapp.util.Session;
 
 /**
@@ -13,14 +14,10 @@ import pe.egcc.eurekaapp.util.Session;
 public class LogonController {
 
   public void validar(String usuario, String clave) {
-    LogonService service = new LogonService();
+    EmpleadoServiceEspec service = new EmpleadoServiceImpl();
     Empleado bean = service.validar(usuario, clave);
     Session.put("usuario", bean);
   }
-  
-  
-  
-  
   
   
 }

@@ -1,4 +1,4 @@
-package pe.egcc.eurekaapp.service;
+package pe.egcc.eurekaapp.service.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,34 +8,26 @@ import java.util.ArrayList;
 import java.util.List;
 import pe.egcc.eurekaapp.db.AccesoDB;
 import pe.egcc.eurekaapp.model.Cliente;
+import pe.egcc.eurekaapp.service.espec.ClienteServiceEspec;
 
+public class ClienteServiceImpl implements ClienteServiceEspec {
 
-public class ClienteService 
-  implements RowMapper<Cliente>{
-  
-  private final String SQL_SELECT 
+  private final String SQL_SELECT
           = "select chr_cliecodigo, vch_cliepaterno, "
           + "vch_cliematerno, vch_clienombre, "
           + "chr_cliedni, vch_clieciudad, "
           + "vch_cliedireccion, vch_clietelefono, "
           + "vch_clieemail from cliente ";
-   private final String SQL_INSERT = "";
-   private final String SQL_UPDATE = "";
-   private final String SQL_DELETE = "";
+  private final String SQL_INSERT = "";
+  private final String SQL_UPDATE
+          = "update cliente set vch_cliepaterno=?, vch_cliematerno=?,"
+          + "vch_clienombre=?, chr_cliedni=?, vch_clieciudad=?, "
+          + "vch_cliedireccion=?, vch_clietelefono=?, vch_clieemail=? "
+          + "where chr_cliecodigo = ?";
+  private final String SQL_DELETE = "";
 
-  public void crear(Cliente bean){
-    
-  }
-  
-  public void modificar(Cliente bean){
-    
-  }
-  
-  public void eliminar(String codigo){
-    
-  }
-  
-  public Cliente traerCliente(String codigo){
+  @Override
+  public Cliente traerPorCodigo(String codigo) {
     Cliente bean = null;
     Connection cn = null;
     try {
@@ -45,14 +37,14 @@ public class ClienteService
       pstm = cn.prepareStatement(sql);
       pstm.setString(1, codigo);
       ResultSet rs = pstm.executeQuery();
-      if( rs.next() ){
+      if (rs.next()) {
         bean = mapRow(rs);
       }
       rs.close();
       pstm.close();
     } catch (Exception e) {
-      throw  new RuntimeException(e.getMessage());
-    } finally{
+      throw new RuntimeException(e.getMessage());
+    } finally {
       try {
         cn.close();
       } catch (Exception e) {
@@ -60,23 +52,20 @@ public class ClienteService
     }
     return bean;
   }
-  
+
   /**
-   * La consulta se realiza en función de los
-   * siguentes campos: 
-   *    - codigo
-   *    - paterno
-   *    - materno
-   *    - nombre
+   * La consulta se realiza en función de los siguentes campos: - codigo - paterno - materno - nombre
+   *
    * @param bean
-   * @return 
+   * @return
    */
-  public List<Cliente> traerClientes(Cliente bean){
+  @Override
+  public List<Cliente> traerVarios(Cliente bean) {
     List<Cliente> lista = new ArrayList<>();
     Connection cn = null;
     try {
       cn = AccesoDB.getConnection();
-      String sql = SQL_SELECT 
+      String sql = SQL_SELECT
               + " where chr_cliecodigo like concat(?,'%') "
               + " and vch_cliepaterno like concat(?,'%') "
               + " and vch_cliematerno like concat(?,'%') "
@@ -88,20 +77,72 @@ public class ClienteService
       pstm.setString(3, bean.getMaterno());
       pstm.setString(4, bean.getNombre());
       ResultSet rs = pstm.executeQuery();
-      while( rs.next() ){
+      while (rs.next()) {
         lista.add(mapRow(rs));
       }
       rs.close();
       pstm.close();
     } catch (Exception e) {
-      throw  new RuntimeException(e.getMessage());
-    } finally{
+      throw new RuntimeException(e.getMessage());
+    } finally {
       try {
         cn.close();
       } catch (Exception e) {
       }
     }
     return lista;
+  }
+
+  @Override
+  public void crear(Cliente bean) {
+
+  }
+
+  @Override
+  public void actualizar(Cliente bean) {
+    Connection cn = null;
+    try {
+      // Conexión
+      cn = AccesoDB.getConnection();
+      // Iniciar Tx
+      cn.setAutoCommit(false);
+      // Leer datos de la cuenta
+      PreparedStatement pstm = cn.prepareStatement(SQL_UPDATE);
+      pstm.setString(1, bean.getPaterno());
+      pstm.setString(2, bean.getMaterno());
+      pstm.setString(3, bean.getNombre());
+      pstm.setString(4, bean.getDni());
+      pstm.setString(5, bean.getCiudad());
+      pstm.setString(6, bean.getDireccion());
+      pstm.setString(7, bean.getTelefono());
+      pstm.setString(8, bean.getEmail());
+      pstm.setString(9, bean.getCodigo());
+      int filas = pstm.executeUpdate();
+      pstm.close();
+      if (filas == 0) {
+        throw new Exception("Cuenta no existe.");
+      }
+      // Fin de Tx
+      cn.commit();
+    } catch (Exception e) {
+      try {
+        cn.rollback();
+      } catch (Exception e1) {
+      }
+      String texto = "Error en el proceso. "
+              + e.getMessage();
+      throw new RuntimeException(texto);
+    } finally {
+      try {
+        cn.close();
+      } catch (Exception e) {
+      }
+    }
+  }
+
+  @Override
+  public void eliminar(String codigo) {
+
   }
 
   @Override
@@ -119,5 +160,4 @@ public class ClienteService
     return bean;
   }
 
-  
 }

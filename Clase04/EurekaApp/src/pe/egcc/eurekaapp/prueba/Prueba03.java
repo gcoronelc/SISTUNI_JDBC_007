@@ -1,8 +1,7 @@
 package pe.egcc.eurekaapp.prueba;
 
-import java.util.List;
 import pe.egcc.eurekaapp.model.Cliente;
-import pe.egcc.eurekaapp.service.ClienteService;
+import pe.egcc.eurekaapp.service.impl.ClienteServiceImpl;
 
 /**
  *
@@ -18,8 +17,8 @@ public class Prueba03 {
       // Dato
       String codigo = "00005";
       // Proceso
-      ClienteService service = new ClienteService();
-      Cliente bean = service.traerCliente(codigo);
+      ClienteServiceImpl service = new ClienteServiceImpl();
+      Cliente bean = service.traerPorCodigo(codigo);
       // Reporte
       System.out.println("Codigo: " + bean.getCodigo());
       System.out.println("Paterno: " + bean.getPaterno());
